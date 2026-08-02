@@ -102,10 +102,10 @@ export function Contact() {
             className="rounded-3xl border border-border bg-card p-7 shadow-lift sm:p-9"
           >
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Nom et prénom" name="nom" error={errors.nom} />
-              <Field label="Organisation" name="organisation" error={errors.organisation} />
-              <Field label="E-mail professionnel" name="email" type="email" error={errors.email} />
-              <Field label="Téléphone (optionnel)" name="telephone" error={errors.telephone} />
+              <Field label="Nom et prénom" name="nom" error={errors["nom"]} />
+              <Field label="Organisation" name="organisation" error={errors["organisation"]} />
+              <Field label="E-mail professionnel" name="email" type="email" error={errors["email"]} />
+              <Field label="Téléphone (optionnel)" name="telephone" error={errors["telephone"]} />
             </div>
             <div className="mt-5 space-y-2">
               <Label htmlFor="message">Votre besoin (optionnel)</Label>
@@ -141,7 +141,7 @@ function Field({
   label: string;
   name: string;
   type?: string;
-  error?: string;
+  error?: string | undefined;
 }) {
   return (
     <div className="space-y-2">
