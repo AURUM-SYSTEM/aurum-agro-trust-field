@@ -7,8 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-const EMAIL = "contact@aurum-system.com";
-const WHATSAPP = "22500000000";
+const EMAIL = "aurumsystem76@gmail.com";
+const WHATSAPP = "237695599387";
+
 
 const schema = z.object({
   nom: z.string().trim().min(2, "Indiquez votre nom.").max(100),
