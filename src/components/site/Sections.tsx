@@ -177,9 +177,8 @@ const modules = [
     icon: BrainCircuit,
     title: "Intelligence artificielle",
     items: [
-      "Transformation des informations terrain en données structurées",
-      "Génération automatique de rapports",
-      "Aide à l'analyse des informations collectées",
+      "Assistant Agro — Posez vos questions en langage naturel sur vos données terrain et obtenez une réponse immédiate.",
+      "Agro Advisor — Synchronise l'ensemble des données collectées pour vous fournir des recommandations personnalisées.",
     ],
   },
   {
