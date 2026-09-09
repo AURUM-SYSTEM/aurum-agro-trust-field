@@ -91,7 +91,7 @@ export function Contact() {
                   <Phone className="size-5" />
                 </span>
                 <span className="text-xs leading-relaxed text-muted-foreground">
-                  Témoignages clients à venir — nos premiers pilotes sont en cours.
+                  Témoignages clients à venir — premiers pilotes en préparation.
                 </span>
               </div>
             </div>
