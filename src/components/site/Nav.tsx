@@ -2,27 +2,48 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
+import { useI18n } from "@/lib/i18n";
 
-const links = [
-  { href: "#probleme", label: "Le défi" },
-  { href: "#solution", label: "Solution" },
-  { href: "#fonctionnement", label: "Fonctionnement" },
-  { href: "#pour-qui", label: "Pour qui" },
-  { href: "#pilote", label: "Pilote" },
-];
+function LangSwitch({ className = "" }: { className?: string }) {
+  const { lang, setLang, t } = useI18n();
+  return (
+    <div
+      className={`inline-flex items-center rounded-full border border-border p-0.5 ${className}`}
+      role="group"
+      aria-label={t.nav.switchLabel}
+    >
+      {(["fr", "en"] as const).map((l) => (
+        <button
+          key={l}
+          type="button"
+          onClick={() => setLang(l)}
+          aria-pressed={lang === l}
+          className={`rounded-full px-2.5 py-1 text-xs font-semibold uppercase transition-colors ${
+            lang === l
+              ? "bg-primary text-primary-foreground"
+              : "text-muted-foreground hover:text-primary"
+          }`}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const { t } = useI18n();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 lg:px-8">
-        <a href="#top" aria-label="AURUM SYSTEM — accueil">
+        <a href="#top" aria-label={t.nav.home}>
           <Logo />
         </a>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Navigation principale">
-          {links.map((l) => (
+        <nav className="hidden items-center gap-7 lg:flex" aria-label={t.nav.main}>
+          {t.nav.links.map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -33,26 +54,30 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-3 lg:flex">
+          <LangSwitch />
           <Button asChild size="sm">
-            <a href="#contact">Demander une démonstration</a>
+            <a href="#contact">{t.nav.cta}</a>
           </Button>
         </div>
 
-        <button
-          className="inline-flex size-10 items-center justify-center rounded-lg border border-border text-foreground lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <LangSwitch />
+          <button
+            className="inline-flex size-10 items-center justify-center rounded-lg border border-border text-foreground"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? t.nav.close : t.nav.open}
+            aria-expanded={open}
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (
         <div className="border-t border-border bg-background px-5 pb-5 pt-3 lg:hidden">
-          <nav className="flex flex-col" aria-label="Navigation mobile">
-            {links.map((l) => (
+          <nav className="flex flex-col" aria-label={t.nav.mobile}>
+            {t.nav.links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
@@ -65,7 +90,7 @@ export function Nav() {
           </nav>
           <Button asChild className="mt-4 w-full">
             <a href="#contact" onClick={() => setOpen(false)}>
-              Demander une démonstration
+              {t.nav.cta}
             </a>
           </Button>
         </div>
