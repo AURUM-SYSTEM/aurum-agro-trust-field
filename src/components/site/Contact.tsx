@@ -6,25 +6,26 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useI18n } from "@/lib/i18n";
 
 const EMAIL = "aurumsystem76@gmail.com";
 const WHATSAPP = "237695599387";
 
-
-const schema = z.object({
-  nom: z.string().trim().min(2, "Indiquez votre nom.").max(100),
-  organisation: z.string().trim().min(2, "Indiquez votre organisation.").max(120),
-  email: z.string().trim().email("Adresse e-mail invalide.").max(255),
-  telephone: z.string().trim().max(40).optional(),
-  message: z.string().trim().max(1000).optional(),
-});
-
 export function Contact() {
+  const { t } = useI18n();
+  const c = t.contact;
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const schema = z.object({
+      nom: z.string().trim().min(2, c.errors.nom).max(100),
+      organisation: z.string().trim().min(2, c.errors.organisation).max(120),
+      email: z.string().trim().email(c.errors.email).max(255),
+      telephone: z.string().trim().max(40).optional(),
+      message: z.string().trim().max(1000).optional(),
+    });
     const fd = new FormData(e.currentTarget);
     const parsed = schema.safeParse(Object.fromEntries(fd));
 
@@ -37,9 +38,7 @@ export function Contact() {
 
     setErrors({});
     setSent(true);
-    toast.success("Demande envoyée", {
-      description: "Notre équipe vous recontacte sous 24 heures ouvrées.",
-    });
+    toast.success(c.toastTitle, { description: c.toastText });
     e.currentTarget.reset();
   }
 
@@ -48,20 +47,15 @@ export function Contact() {
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
           <div>
-            <span className="eyebrow text-primary">Contact</span>
+            <span className="eyebrow text-primary">{c.eyebrow}</span>
             <h2 className="mt-4 text-3xl font-bold leading-tight text-foreground sm:text-4xl">
-              Demandez une démonstration AURUM Agro.
+              {c.title}
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Présentez-nous votre chaîne d'approvisionnement : nous vous montrons comment fiabiliser
-              vos données terrain et préparer vos preuves de traçabilité.
-            </p>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">{c.text}</p>
 
             <div className="mt-8 space-y-3">
               <a
-                href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-                  "Bonjour AURUM Agro, je souhaite une démonstration.",
-                )}`}
+                href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(c.whatsappMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/40"
@@ -70,8 +64,10 @@ export function Contact() {
                   <MessageCircle className="size-5" />
                 </span>
                 <span>
-                  <span className="block text-sm font-semibold text-card-foreground">WhatsApp</span>
-                  <span className="block text-xs text-muted-foreground">Réponse rapide</span>
+                  <span className="block text-sm font-semibold text-card-foreground">
+                    {c.whatsapp}
+                  </span>
+                  <span className="block text-xs text-muted-foreground">{c.whatsappHint}</span>
                 </span>
               </a>
               <a
@@ -82,7 +78,7 @@ export function Contact() {
                   <Mail className="size-5" />
                 </span>
                 <span>
-                  <span className="block text-sm font-semibold text-card-foreground">E-mail</span>
+                  <span className="block text-sm font-semibold text-card-foreground">{c.email}</span>
                   <span className="block text-xs text-muted-foreground">{EMAIL}</span>
                 </span>
               </a>
@@ -91,7 +87,7 @@ export function Contact() {
                   <Phone className="size-5" />
                 </span>
                 <span className="text-xs leading-relaxed text-muted-foreground">
-                  Témoignages clients à venir — premiers pilotes en préparation.
+                  {c.testimonials}
                 </span>
               </div>
             </div>
@@ -103,28 +99,30 @@ export function Contact() {
             className="rounded-3xl border border-border bg-card p-7 shadow-lift sm:p-9"
           >
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Nom et prénom" name="nom" error={errors["nom"]} />
-              <Field label="Organisation" name="organisation" error={errors["organisation"]} />
-              <Field label="E-mail professionnel" name="email" type="email" error={errors["email"]} />
-              <Field label="Téléphone (optionnel)" name="telephone" error={errors["telephone"]} />
+              <Field label={c.fields.nom} name="nom" error={errors["nom"]} />
+              <Field
+                label={c.fields.organisation}
+                name="organisation"
+                error={errors["organisation"]}
+              />
+              <Field label={c.fields.email} name="email" type="email" error={errors["email"]} />
+              <Field label={c.fields.telephone} name="telephone" error={errors["telephone"]} />
             </div>
             <div className="mt-5 space-y-2">
-              <Label htmlFor="message">Votre besoin (optionnel)</Label>
+              <Label htmlFor="message">{c.fields.message}</Label>
               <Textarea
                 id="message"
                 name="message"
                 rows={4}
                 maxLength={1000}
-                placeholder="Nombre de producteurs suivis, zones d'intervention, échéances EUDR…"
+                placeholder={c.placeholder}
               />
             </div>
             <Button type="submit" size="lg" className="mt-6 w-full">
-              Demander une démonstration
+              {c.submit}
             </Button>
             <p className="mt-3 text-center text-xs text-muted-foreground">
-              {sent
-                ? "Merci, votre demande a bien été prise en compte."
-                : "Réponse sous 24 heures ouvrées."}
+              {sent ? c.noteSent : c.note}
             </p>
           </form>
         </div>

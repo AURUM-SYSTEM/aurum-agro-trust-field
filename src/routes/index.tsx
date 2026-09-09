@@ -12,6 +12,7 @@ import {
 } from "@/components/site/Sections";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
+import { LanguageProvider } from "@/lib/i18n";
 
 const title = "AURUM Agro — Données terrain fiables pour la filière cacao";
 const description =
