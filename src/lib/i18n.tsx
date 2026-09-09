@@ -418,4 +418,4 @@ export const content = {
       rights: "All rights reserved.",
     },
   },
-} as const;
+};
