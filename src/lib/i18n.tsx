@@ -146,6 +146,53 @@ export const content = {
         },
       ],
     },
+    carte: {
+      eyebrow: "Identité numérique",
+      title: "Une identité numérique pour chaque producteur",
+      subtitle:
+        "Chaque producteur dispose d'une fiche d'identité unique qui permet de relier ses informations, ses parcelles et son historique de suivi.",
+      cardBadge: "Exemple — données fictives",
+      cardTagline: "Fiche d'identité numérique du producteur",
+      cardHeader: "Carte producteur",
+      fields: {
+        code: "Code producteur",
+        coop: "Coopérative",
+        loc: "Localisation",
+        parcelle: "Parcelle",
+      },
+      values: {
+        nom: "Jean Mballa",
+        code: "PRD-20260917-000123",
+        coop: "Coopérative Exemple Cacao",
+        loc: "Loum, Littoral, Cameroun",
+        statut: "Producteur actif",
+        parcelle: "1 parcelle enregistrée",
+      },
+      qrAlt: "QR code décoratif de démonstration, sans donnée réelle",
+      qrCaption: "QR code de démonstration",
+      cardFooter: "Un producteur identifié, une filière plus forte.",
+      points: [
+        {
+          title: "Identification",
+          text: "Un code producteur unique facilite l'identification et le suivi.",
+        },
+        {
+          title: "Traçabilité",
+          text: "Les informations du producteur peuvent être reliées aux parcelles et aux données collectées sur le terrain.",
+        },
+        {
+          title: "Suivi",
+          text: "Les données peuvent être actualisées au fil des campagnes et des visites terrain.",
+        },
+        {
+          title: "Portabilité",
+          text: "L'identité du producteur peut servir de référence lorsqu'il change de campagne, de coopérative ou de partenaire, selon les droits d'accès définis.",
+        },
+      ],
+      disclaimer:
+        "Fiche d'identité numérique du producteur dans AURUM AGRO — il ne s'agit ni d'une pièce d'identité nationale, ni d'un document officiel de l'État, ni d'une certification.",
+      cta: "Découvrir comment AURUM AGRO vérifie les données",
+    },
     fonctionnement: {
       eyebrow: "Comment ça fonctionne",
       title: "Du plant de cacao à la décision, en trois étapes.",
@@ -330,6 +377,53 @@ export const content = {
           ],
         },
       ],
+    },
+    carte: {
+      eyebrow: "Digital identity",
+      title: "A digital identity for every farmer",
+      subtitle:
+        "Each farmer has a unique identity record that links their information, plots and follow-up history.",
+      cardBadge: "Sample — fictional data",
+      cardTagline: "Farmer digital identity record",
+      cardHeader: "Farmer card",
+      fields: {
+        code: "Farmer code",
+        coop: "Cooperative",
+        loc: "Location",
+        parcelle: "Plot",
+      },
+      values: {
+        nom: "Jean Mballa",
+        code: "PRD-20260917-000123",
+        coop: "Sample Cocoa Cooperative",
+        loc: "Loum, Littoral, Cameroon",
+        statut: "Active farmer",
+        parcelle: "1 registered plot",
+      },
+      qrAlt: "Decorative demonstration QR code, with no real data",
+      qrCaption: "Demonstration QR code",
+      cardFooter: "A farmer identified, a stronger supply chain.",
+      points: [
+        {
+          title: "Identification",
+          text: "A unique farmer code makes identification and follow-up easier.",
+        },
+        {
+          title: "Traceability",
+          text: "Farmer information can be linked to plots and to the data collected in the field.",
+        },
+        {
+          title: "Monitoring",
+          text: "Data can be updated across seasons and field visits.",
+        },
+        {
+          title: "Portability",
+          text: "The farmer's identity can serve as a reference when they change season, cooperative or partner, according to the access rights defined.",
+        },
+      ],
+      disclaimer:
+        "Digital identity record of the farmer within AURUM AGRO — it is neither a national identity document, nor an official government document, nor a certification.",
+      cta: "Discover how AURUM AGRO verifies the data",
     },
     fonctionnement: {
       eyebrow: "How it works",
