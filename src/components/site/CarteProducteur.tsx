@@ -29,7 +29,7 @@ function Field({
       <div className="min-w-0">
         <p className="text-[11px] uppercase tracking-wide text-muted-foreground">{label}</p>
         <p
-          className={`truncate text-sm text-card-foreground ${
+          className={`break-words text-sm text-card-foreground ${
             strong ? "font-display font-bold" : "font-medium"
           }`}
         >
