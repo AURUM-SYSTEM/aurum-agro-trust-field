@@ -10,6 +10,7 @@ import {
   Pilote,
   APropos,
 } from "@/components/site/Sections";
+import { CarteProducteur } from "@/components/site/CarteProducteur";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { LanguageProvider } from "@/lib/i18n";
@@ -41,6 +42,7 @@ function Index() {
           <Hero />
           <Probleme />
           <Solution />
+          <CarteProducteur />
           <Fonctionnement />
           <PourQui />
           <Difference />
